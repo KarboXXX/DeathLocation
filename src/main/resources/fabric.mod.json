@@ -22,7 +22,7 @@
     ]
   },
   "mixins": [
-    "mixins.json"
+    "deathlocation.mixins.json"
   ],
 
   "depends": {
