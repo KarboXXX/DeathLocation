@@ -6,8 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "DeathScreenMixin",
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+    "DeathScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
