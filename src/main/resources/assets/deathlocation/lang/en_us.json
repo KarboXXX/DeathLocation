@@ -1,3 +1,6 @@
 {
-  "deathlocation.deathmessage": "You died at X: %d, Y: %d, Z: %d in the %s."
+  "deathlocation.deathmessage": "You died at X: %d, Y: %d, Z: %d in the %s.",
+  "deathlocation.overworld": "Overworldaaa",
+  "deathlocation.nether": "Nether",
+  "deathlocation.end": "End"
 }

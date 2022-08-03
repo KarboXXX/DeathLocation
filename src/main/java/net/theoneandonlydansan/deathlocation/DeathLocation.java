@@ -12,14 +12,14 @@ public class DeathLocation {
     public static MutableText getMessage() {
         Vec3d pos = client.player.getPos();
         DimensionType dimensionType = client.world.getDimension();
-        String dimension;
+        Text dimension;
 
         if (dimensionType.respawnAnchorWorks()) {
-            dimension = "Nether";
+            dimension = Text.translatable("deathlocation.nether");
         } else if (dimensionType.bedWorks()) {
-            dimension = "Overworld";
+            dimension = Text.translatable("deathlocation.overworld");
         } else {
-            dimension = "End";
+            dimension = Text.translatable("deathlocation.end");
         }
 
         return Text.translatable("deathlocation.deathmessage", (int) pos.x, (int) pos.y, (int) pos.z, dimension);

@@ -1,6 +1,6 @@
 {
-  "deathlocation.deathmessage": "Вы погибли на X: %d, Y: %d, Z: %d в %s."
-  "dimension_the_overworld": "Верхнем Мире"
-  "dimension_the_nether": "Нижнем Мире"  
-  "dimension_the_end": "Эндер Мире"
+  "deathlocation.deathmessage": "Вы погибли на X: %d, Y: %d, Z: %d в %s.",
+  "deathlocation.overworld": "Верхнем Мире",
+  "deathlocation.nether": "Нижнем Мире",
+  "deathlocation.end": "Эндер Мире"
 }
