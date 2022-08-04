@@ -2,5 +2,6 @@
   "deathlocation.deathmessage": "You died at X: %d, Y: %d, Z: %d in the %s.",
   "deathlocation.overworld": "Overworld",
   "deathlocation.nether": "Nether",
-  "deathlocation.end": "End"
+  "deathlocation.end": "End",
+  "deathlocation.copy": "Copy coordinates"
 }
