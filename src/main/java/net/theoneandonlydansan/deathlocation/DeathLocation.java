@@ -1,20 +1,21 @@
 package net.theoneandonlydansan.deathlocation;
 
-import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.command.CommandSource;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Language;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.dimension.DimensionType;
-import java.io.File;
-import java.io.FileWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
@@ -22,30 +23,46 @@ public class DeathLocation implements ClientModInitializer {
     public static MinecraftClient client = MinecraftClient.getInstance();
     public static String message = "";
     public static Formatting formatting = Formatting.GOLD;
+    public static boolean copyDimension = true;
     public static File configFile = new File( (FabricLoader.getInstance().getConfigDir()) + "/DeathLocation.txt");
+    public static List<String> strings = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
         try {
-
             if(!configFile.exists()) {
                 configFile.createNewFile();
-                updateConfig("gold");
+                updateConfig("gold", 0);
+                updateConfig("true", 1);
             }
 
-            setColor(Files.readAllLines(configFile.toPath()).get(0));
+            strings = Files.readAllLines(configFile.toPath());
 
+            if(strings.size() == 0) {
+                updateConfig("gold", 0);
+            }
+
+            if(strings.size() == 1) {
+                updateConfig("true", 1);
+            }
+
+            setColor(strings.get(0));
+            copyDimension = Boolean.parseBoolean(strings.get(1));
 
             ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(
                 literal("DeathLocation")
-                        .then(literal("aqua").executes(context -> command("aqua")))
-                        .then(literal("black").executes(context -> command("black")))
-                        .then(literal("blue").executes(context -> command("blue")))
-                        .then(literal("gray").executes(context -> command("gray")))
-                        .then(literal("green").executes(context -> command("green")))
-                        .then(literal("red").executes(context -> command("red")))
-                        .then(literal("white").executes(context -> command("white")))
-                        .then(literal("yellow").executes(context -> command("yellow")))
+                    .then(literal("Color")
+                        .then(literal("aqua").executes(context -> commandColor("aqua")))
+                        .then(literal("black").executes(context -> commandColor("black")))
+                        .then(literal("blue").executes(context -> commandColor("blue")))
+                        .then(literal("gray").executes(context -> commandColor("gray")))
+                        .then(literal("green").executes(context -> commandColor("green")))
+                        .then(literal("red").executes(context -> commandColor("red")))
+                        .then(literal("white").executes(context -> commandColor("white")))
+                        .then(literal("yellow").executes(context -> commandColor("yellow"))))
+                    .then(literal("CopyDimension")
+                        .then(literal("off").executes(context -> commandCopyDimension("false")))
+                        .then(literal("on").executes(context -> commandCopyDimension("true"))))
             ));
 
         } catch (Exception e) {
@@ -53,9 +70,15 @@ public class DeathLocation implements ClientModInitializer {
         }
     }
 
-    public static int command(String s) {
+    public static int commandColor(String s) {
         setColor(s);
-        updateConfig(s);
+        updateConfig(s, 0);
+        return 1;
+    }
+
+    public static int commandCopyDimension(String s) {
+        copyDimension = Boolean.parseBoolean(s);
+        updateConfig(s, 1);
         return 1;
     }
 
@@ -89,11 +112,14 @@ public class DeathLocation implements ClientModInitializer {
         }
     }
 
-    public static void updateConfig(String s) {
+    public static void updateConfig(String s, int line) {
         try {
-            FileWriter fileWriter = new FileWriter(configFile);
-            fileWriter.write(s);
-            fileWriter.close();
+            while (line >= strings.size()) {
+                strings.add("");
+            }
+
+            strings.set(line, s);
+            Files.write(configFile.toPath(), strings);
         } catch (Exception e) {
             e.printStackTrace();
         }
