@@ -16,9 +16,10 @@
   "license": "Public Domain",
   "icon": "assets/deathlocation/icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
+      "net.theoneandonlydansan.deathlocation.DeathLocation"
     ]
   },
   "mixins": [

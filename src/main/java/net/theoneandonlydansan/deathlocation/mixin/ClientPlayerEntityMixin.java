@@ -3,7 +3,6 @@ package net.theoneandonlydansan.deathlocation.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +27,7 @@ public class ClientPlayerEntityMixin {
 
         text.setStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.translatable("deathlocation.copy"))));
         text.setStyle(text.getStyle().withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, message.substring(message.indexOf("X:"), message.length() -1))));
-        text.formatted(Formatting.GOLD);
+        text.formatted(formatting);
 
         client.player.sendMessage(text, false);
     }
