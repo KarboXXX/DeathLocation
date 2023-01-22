@@ -1,0 +1,7 @@
+{
+  "deathlocation.deathmessage": "Вы погибли на координатах X: %d, Y: %d, Z: %d в %s.",
+  "deathlocation.overworld": "Верхнем мире",
+  "deathlocation.nether": "Нижнем мире",
+  "deathlocation.end": "измерении Энда",
+  "deathlocation.copy": "Копировать координаты"
+}

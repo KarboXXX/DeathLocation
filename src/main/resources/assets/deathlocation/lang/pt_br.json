@@ -1,0 +1,7 @@
+{
+  "deathlocation.deathmessage": "Você morreu em X: %d, Y: %d, Z: %d no %s.",
+  "deathlocation.overworld": "Mundo normal",
+  "deathlocation.nether": "Nether",
+  "deathlocation.end": "Fim",
+  "deathlocation.copy": "Copiar coordenadas."
+}

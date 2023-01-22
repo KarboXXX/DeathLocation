@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "net/theoneandonlydansan/deathlocation/mixin/DeathScreenMixin": {
+      "render": "Lnet/minecraft/class_418;method_25394(Lnet/minecraft/class_4587;IIF)V"
+    },
+    "net/theoneandonlydansan/deathlocation/mixin/ClientPlayerEntityMixin": {
+      "requestRespawn": "Lnet/minecraft/class_746;method_7331()V"
+    },
+    "net/theoneandonlydansan/deathlocation/mixin/ServerPlayerEntityMixin": {
+      "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "net/theoneandonlydansan/deathlocation/mixin/DeathScreenMixin": {
+        "render": "Lnet/minecraft/class_418;method_25394(Lnet/minecraft/class_4587;IIF)V"
+      },
+      "net/theoneandonlydansan/deathlocation/mixin/ClientPlayerEntityMixin": {
+        "requestRespawn": "Lnet/minecraft/class_746;method_7331()V"
+      },
+      "net/theoneandonlydansan/deathlocation/mixin/ServerPlayerEntityMixin": {
+        "onDeath": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
+      }
+    }
+  }
+}

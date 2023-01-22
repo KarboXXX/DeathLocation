@@ -1,0 +1,2 @@
+v1	named	intermediary
+FIELD	net/theoneandonlydansan/deathlocation/mixin/ClientPlayerEntityMixin	Lnet/minecraft/client/MinecraftClient;	client	field_3937
